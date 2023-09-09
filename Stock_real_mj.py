@@ -20,11 +20,11 @@ def add_meta_tag():
     meta_tag = """
         <head>
             <meta name="google-site-verification" content="QBiAoAo1GAkCBe1QoWq-dQ1RjtPHeFPyzkqJqsrqW-s" />
-            <style>body{background-color:red}</style>
+           
         </head>
     """
     st.markdown(meta_tag, unsafe_allow_html=True)
-
+ <style>body{background-color:red}</style>
 # Main code
 add_meta_tag()
 
