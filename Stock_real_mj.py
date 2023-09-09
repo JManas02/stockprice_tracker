@@ -23,8 +23,18 @@ background-size: cover;
 }
 </style>
 '''
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
 
-st.markdown(page_bg_img, unsafe_allow_html=True)
+header_html = "<img src='data:image/jpg;base64,{}' class='img-fluid'>".format(
+    img_to_bytes("image.jpg")
+)
+st.markdown(
+    header_html, unsafe_allow_html=True,
+)
+
 
 def add_meta_tag():
     meta_tag = """
@@ -59,15 +69,6 @@ if(selected == 'Stocks Performance Comparison'):  # if user selects 'Stocks Perf
     tickers = stock_df["Company Name"]
     # dropdown for selecting assets
     dropdown = st.multiselect('Pick your assets', tickers)
-    page_bg_img = '''
-    <style>
-    body {
-    background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
-    background-size: cover;
-    }
-    </style>
-    '''
-    st.markdown(page_bg_img, unsafe_allow_html=True)
     with st.spinner('Loading...'):  # spinner while loading
         time.sleep(2)
         # st.success('Loaded')
@@ -235,6 +236,5 @@ elif(selected == 'About'):
     }
     </style>
     """, unsafe_allow_html=True)
-    
     st.markdown('<p class="big-font"> Real Time Stock Analyzer is a web application that allows users to visualize Stock Performance Comparison and Real-Time Stock Prices. This application is developed using Streamlit. Streamlit is an open source app framework in Python language. It helps users to create web apps for Data Science and Machine Learning in a short time. This Project is developed by Manaswini,Namitha and Hemanth.<br>Hope you are able to employ this application well and get your desired output.<br> Cheers!</p>', unsafe_allow_html=True)
   
