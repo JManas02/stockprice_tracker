@@ -1,5 +1,3 @@
-# StockStream Web App by VAISHNAVI SHARMA & ROHIT MORE
-
 from matplotlib.pyplot import axis
 import streamlit as st  # streamlit library
 import pandas as pd  # pandas library
@@ -12,9 +10,46 @@ from prophet import Prophet  # prophet library
 # plotly library for prophet model plotting
 from prophet.plot import plot_plotly
 import time  # time library
+import plotly.express as px
+import base64
 from streamlit_option_menu import option_menu  # select_options library
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
+
+@st.experimental_memo
+def get_img_as_base64(file):
+    with open(file, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+    
+page_bg_img = f"""
+<style>
+[data-testid="stAppViewContainer"] > .main {{
+background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Ftowardsdatascience.com%2Fcreating-a-finance-web-app-in-3-minutes-8273d56a39f8&psig=AOvVaw05XuHySyZa1zvnn8mzqPwp&ust=1694339716846000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKCWvbuhnYEDFQAAAAAdAAAAABAD");
+background-size: 180%;
+background-position: top left;
+background-repeat: no-repeat;
+background-attachment: local;
+}}
+
+[data-testid="stSidebar"] > div:first-child {{
+background-image: url("data:image/png;base64,{img}");
+background-position: center; 
+background-repeat: no-repeat;
+background-attachment: fixed;
+}}
+
+[data-testid="stHeader"] {{
+background: rgba(0,0,0,0);
+}}
+
+[data-testid="stToolbar"] {{
+right: 2rem;
+}}
+</style>
+"""
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 def add_meta_tag():
     meta_tag = """
