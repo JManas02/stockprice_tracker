@@ -26,7 +26,7 @@ def add_meta_tag():
 
 # Main code
 add_meta_tag()
-
+<style>background:red</style>
 # Sidebar Section Starts Here
 today = date.today()  # today's date
 st.write('''# StockStream ''')  # title
@@ -213,7 +213,7 @@ elif(selected == 'About'):
         <style>
     .big-font {
         font-size:25px !important;
-       background:red
+     
     }
     </style>
     """, unsafe_allow_html=True)
