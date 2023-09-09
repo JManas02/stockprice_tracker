@@ -24,7 +24,7 @@ def add_meta_tag():
         </head>
     """
     st.markdown(meta_tag, unsafe_allow_html=True)
- <style>body{background-color:red}</style>
+    <style>body{background-color:red}</style>
 # Main code
 add_meta_tag()
 
