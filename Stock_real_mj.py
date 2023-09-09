@@ -30,8 +30,8 @@ add_meta_tag()
 
 # Sidebar Section Starts Here
 today = date.today()  # today's date
-st.write('''# StockStream ''')  # title
-st.sidebar.write('''# StockStream ''')
+st.write('''# Stockalsys ''')  # title
+st.sidebar.write('''# Stockalsys ''')
 
 with st.sidebar: 
         selected = option_menu("Utilities", ['Stocks Performance Comparison', "Real-Time Stock Price", 'About'])
@@ -216,8 +216,8 @@ elif(selected == 'About'):
         font-size:25px !important;
      
     }
-    body{background-color:red}
+    
     </style>
     """, unsafe_allow_html=True)
-    st.markdown('<p class="big-font"> Real Time Stock Analyzer is a web application that allows users to visualize Stock Performance Comparison and Real-Time Stock Prices. This application is developed using Streamlit. Streamlit is an open source app framework in Python language. It helps users to create web apps for Data Science and Machine Learning in a short time. This Project is developed by Manaswini,Namitha and Hemanth.<br>Hope you are able to employ this application well and get your desired output.<br> Cheers!</p>', unsafe_allow_html=True)
+    st.markdown('<p class="big-font">Stockalsys is a web application that allows users to visualize Stock Performance Comparison and Real-Time Stock Prices. This application is developed using Streamlit. Streamlit is an open source app framework in Python language. It helps users to create web apps for Data Science and Machine Learning in a short time. This Project is developed by Manaswini,Namitha and Hemanth.<br>Hope you are able to employ this application well and get your desired output.<br> Cheers!</p>', unsafe_allow_html=True)
   
