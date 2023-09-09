@@ -15,7 +15,7 @@ import base64
 from streamlit_option_menu import option_menu  # select_options library
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
-
+mg = get_img_as_base64("image.jpg")
 @st.experimental_memo
 def get_img_as_base64(file):
     with open(file, "rb") as f:
@@ -32,6 +32,13 @@ background-repeat: no-repeat;
 background-attachment: local;
 }}
 
+
+[data-testid="stSidebar"] > div:first-child {{
+background-image: url("data:image/png;base64,{img}");
+background-position: center; 
+background-repeat: no-repeat;
+background-attachment: fixed;
+}}
 
 [data-testid="stHeader"] {{
 background: rgba(0,0,0,0);
