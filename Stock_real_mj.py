@@ -33,7 +33,7 @@ st.write('''# StockStream ''')  # title
 st.sidebar.write('''# StockStream ''')
 
 with st.sidebar: 
-        selected = option_menu("Utilities", ["Stocks Performance Comparison", "Real-Time Stock Price", "Stock Prediction", 'About'])
+        selected = option_menu("Utilities", ['Stocks Performance Comparison', "Real-Time Stock Price", 'About'])
 
 start = st.sidebar.date_input(
     'Start', datetime.date(2022, 1, 1))  # start date input
@@ -207,69 +207,6 @@ elif(selected == 'Real-Time Stock Price'):  # if user selects 'Real-Time Stock P
 
 # Real-Time Stock Price Section Ends Here
 
-# Stock Price Prediction Section Starts Here
-elif(selected == 'Stock Prediction'):  # if user selects 'Stock Prediction'
-    st.subheader("Stock Prediction")
-
-    tickers = stock_df["Company Name"]  # get company names from csv file
-    # dropdown for selecting company
-    a = st.selectbox('Pick a Company', tickers)
-    with st.spinner('Loading...'):  # spinner while loading
-             time.sleep(2)
-    dict_csv = pd.read_csv('StockStreamTickersData.csv', header=None, index_col=0).to_dict()[1]  # read csv file
-    symb_list = []  # list for storing symbols
-    val = dict_csv.get(a)  # get symbol from csv file
-    symb_list.append(val)  # append symbol to list
-    if(a == ""):  # if user doesn't select any company
-        st.write("Enter a Stock Name")  # display message
-    else:  # if user selects a company
-        # download data from yfinance
-        data = yf.download(symb_list, start=start, end=end)
-        data.reset_index(inplace=True)  # reset index
-        st.subheader('Raw Data of {}'.format(a))  # display raw data
-        st.write(data)  # display data
-
-        def plot_raw_data():  # function for plotting raw data
-            fig = go.Figure()  # create figure
-            fig.add_trace(go.Scatter(  # add scatter plot
-                x=data['Date'], y=data['Open'], name="stock_open"))  # x-axis: date, y-axis: open
-            fig.add_trace(go.Scatter(  # add scatter plot
-                x=data['Date'], y=data['Close'], name="stock_close"))  # x-axis: date, y-axis: close
-            fig.layout.update(  # update layout
-                title_text='Time Series Data of {}'.format(a), xaxis_rangeslider_visible=True)  # title, x-axis: rangeslider
-            st.plotly_chart(fig)  # display plotly chart
-
-        plot_raw_data()  # plot raw data
-        # slider for selecting number of years
-        n_years = st.slider('Years of prediction:', 1, 4)
-        period = n_years * 365  # calculate number of days
-
-        # Predict forecast with Prophet
-        # create dataframe for training data
-        df_train = data[['Date', 'Close']]
-        df_train = df_train.rename(
-            columns={"Date": "ds", "Close": "y"})  # rename columns
-
-        m = Prophet()  # create object for prophet
-        m.fit(df_train)  # fit data to prophet
-        future = m.make_future_dataframe(
-            periods=period)  # create future dataframe
-        forecast = m.predict(future)  # predict future dataframe
-
-        # Show and plot forecast
-        st.subheader('Forecast Data of {}'.format(a))  # display forecast data
-        st.write(forecast)  # display forecast data
-
-        st.subheader(f'Forecast plot for {n_years} years')  # display message
-        fig1 = plot_plotly(m, forecast)  # plot forecast
-        st.plotly_chart(fig1)  # display plotly chart
-
-        st.subheader("Forecast components of {}".format(a))  # display message
-        fig2 = m.plot_components(forecast)  # plot forecast components
-        st.write(fig2)  # display plotly chart
-
-# Stock Price Prediction Section Ends Here
-
 elif(selected == 'About'):
     st.subheader("About")
     
@@ -281,5 +218,5 @@ elif(selected == 'About'):
     </style>
     """, unsafe_allow_html=True)
     
-    st.markdown('<p class="big-font">StockStream is a web application that allows users to visualize Stock Performance Comparison, Real-Time Stock Prices and Stock Price Prediction. This application is developed using Streamlit. Streamlit is an open source app framework in Python language. It helps users to create web apps for Data Science and Machine Learning in a short time. This Project is developed by Vaishnavi Sharma and Rohit More. You can find more about the developers on their GitHub Profiles shared below.<br>Hope you are able to employ this application well and get your desired output.<br> Cheers!</p>', unsafe_allow_html=True)
+    st.markdown('<p class="big-font"> Real Time Stock Analyzer is a web application that allows users to visualize Stock Performance Comparison and Real-Time Stock Prices. This application is developed using Streamlit. Streamlit is an open source app framework in Python language. It helps users to create web apps for Data Science and Machine Learning in a short time. This Project is developed by Manaswini,Namitha and Hemanth.<br>Hope you are able to employ this application well and get your desired output.<br> Cheers!</p>', unsafe_allow_html=True)
   
