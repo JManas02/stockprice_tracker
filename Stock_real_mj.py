@@ -59,7 +59,15 @@ if(selected == 'Stocks Performance Comparison'):  # if user selects 'Stocks Perf
     tickers = stock_df["Company Name"]
     # dropdown for selecting assets
     dropdown = st.multiselect('Pick your assets', tickers)
-
+    page_bg_img = '''
+    <style>
+    body {
+    background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
+    background-size: cover;
+    }
+    </style>
+    '''
+    st.markdown(page_bg_img, unsafe_allow_html=True)
     with st.spinner('Loading...'):  # spinner while loading
         time.sleep(2)
         # st.success('Loaded')
