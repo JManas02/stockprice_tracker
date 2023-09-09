@@ -15,26 +15,6 @@ import base64
 from streamlit_option_menu import option_menu  # select_options library
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
-page_bg_img = '''
-<style>
-body {
-background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
-background-size: cover;
-}
-</style>
-'''
-def img_to_bytes(img_path):
-    img_bytes = Path(img_path).read_bytes()
-    encoded = base64.b64encode(img_bytes).decode()
-    return encoded
-
-header_html = "<img src='data:image/jpg;base64,{}' class='img-fluid'>".format(
-    img_to_bytes("image.jpg")
-)
-st.markdown(
-    header_html, unsafe_allow_html=True,
-)
-
 
 def add_meta_tag():
     meta_tag = """
