@@ -24,7 +24,7 @@ def add_meta_tag():
         </head>
     """
     st.markdown(meta_tag, unsafe_allow_html=True)
-    <style>body{background-color:red}</style>
+    
 # Main code
 add_meta_tag()
 
@@ -216,6 +216,7 @@ elif(selected == 'About'):
         font-size:25px !important;
      
     }
+     <style>body{background-color:red}</style>
     </style>
     """, unsafe_allow_html=True)
     st.markdown('<p class="big-font"> Real Time Stock Analyzer is a web application that allows users to visualize Stock Performance Comparison and Real-Time Stock Prices. This application is developed using Streamlit. Streamlit is an open source app framework in Python language. It helps users to create web apps for Data Science and Machine Learning in a short time. This Project is developed by Manaswini,Namitha and Hemanth.<br>Hope you are able to employ this application well and get your desired output.<br> Cheers!</p>', unsafe_allow_html=True)
