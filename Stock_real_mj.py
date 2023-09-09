@@ -213,6 +213,7 @@ elif(selected == 'About'):
         <style>
     .big-font {
         font-size:25px !important;
+       background:red
     }
     </style>
     """, unsafe_allow_html=True)
