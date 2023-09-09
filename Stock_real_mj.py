@@ -27,7 +27,7 @@ def add_meta_tag():
 
 # Main code
 add_meta_tag()
-<style>background:red</style>
+
 # Sidebar Section Starts Here
 today = date.today()  # today's date
 st.write('''# StockStream ''')  # title
