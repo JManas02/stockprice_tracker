@@ -1,2 +1,2 @@
-#Stocklyser
+#Stockalyser
 Real time stockprice tracker
